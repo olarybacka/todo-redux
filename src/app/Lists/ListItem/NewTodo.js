@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import TextField from 'material-ui/TextField'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import actionCreators from '../../../store/Lists/actionCreators'
+import actionCreators from '../../../store/Todos/actionCreators'
 import { connect } from 'react-redux'
 
 class NewTodo extends Component {

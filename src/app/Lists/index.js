@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import actionCreators from '../../store/Lists/actionCreators'
+import actionCreatorsLists from '../../store/Lists/actionCreators'
+import actionCreatorsTodos from '../../store/Todos/actionCreators'
 import ListsHeader from './ListHeader'
 import ListItem from './ListItem'
 
@@ -40,17 +41,17 @@ class MainListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ mainLists: { lists, name, todos } }) => ({
+const mapStateToProps = ({ List: { lists, name}, Todo: { todos } }) => ({
   lists,
   name,
   todos,
 })
 
 const mapDispatchToProps = {
-  getLists: actionCreators.getLists.create,
-  getTodos: actionCreators.getTodos.create,
-  addListItem: actionCreators.addListItem.create,
-  setListItemName: actionCreators.setListItemName.create,
+  getLists: actionCreatorsLists.getLists.create,
+  getTodos: actionCreatorsTodos.getTodos.create,
+  addListItem: actionCreatorsLists.addListItem.create,
+  setListItemName: actionCreatorsLists.setListItemName.create,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainListContainer)

@@ -8,10 +8,4 @@ export default {
   setListItemName: ActionCreator('SET_LIST_ITEM_NAME'),
   putListItemName: ActionCreator('CHANGE_LIST_ITEM'),
   deleteListItem: ActionCreator('DELETE_LIST_ITEM'),
-
-  getTodos: ActionCreator('GET_TODOS'),
-
-  updateTodos: ActionCreator('UPDATE_TODOS'),
-  postTodoItem: ActionCreator('POST_TODO_ITEM'),
-  setTodoItemName: ActionCreator('SET_TODO_ITEM_NAME'),
 }

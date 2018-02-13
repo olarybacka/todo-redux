@@ -48,7 +48,7 @@ class ListItem extends Component {
   }
 }
 
-const mapStateToProps = ({ mainLists: { name } }) => ({
+const mapStateToProps = ({ List: { name } }) => ({
   name
 })
 

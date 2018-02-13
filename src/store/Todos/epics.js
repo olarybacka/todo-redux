@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable'
-import actionCreators from '../Lists/actionCreators'
+import actionCreators from './actionCreators'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'
 import 'rxjs/add/operator/catch'
@@ -22,7 +22,7 @@ const postTodoItem = action$ =>
     ajax
       .post(baseUrl('todos/'), action.payload)
       .map(res => res.response)
-      .mergeMap(res => Observable.of(actionCreators.getTodos.create()))
+      .mergeMap(() => Observable.of(actionCreators.getTodos.create()))
   )
 
 export const epics = combineEpics(

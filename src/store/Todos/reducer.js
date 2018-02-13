@@ -1,19 +1,13 @@
 import actionCreators from './actionCreators'
 const initialState = {
-  listName: '',
-  lists: [],
+  todos: [],
 }
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionCreators.updateLists.type:
+    case actionCreators.updateTodos.type:
       return {
         ...state,
-        lists: payload,
-      }
-    case actionCreators.setListItemName.type:
-      return {
-        ...state,
-        name: payload,
+        todos: payload,
       }
     default:
       return state
