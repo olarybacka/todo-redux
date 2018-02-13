@@ -1,53 +1,47 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import actionCreators from "../../store/Lists/actionCreators";
-import FloatingActionButton from 'material-ui/FloatingActionButton'
-import TextField from 'material-ui/TextField'
-import ContentAdd from 'material-ui/svg-icons/content/add'
+import ListHeader from "./ListHeader";
+import ListItem from "./ListItem";
+
+const styles = {
+    root: {
+        display: "flex",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+    },
+};
 
 class MainListContainer extends Component {
-  componentDidMount() {
-    const { getLists } = this.props;
-    getLists();
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    const { name, addListItem } = this.props;
-    addListItem({ name })
-  }
+    componentDidMount() {
+        const { getLists } = this.props;
+        getLists();
+    }
 
-  render() {
-    const { lists, setListItemName } = this.props;
-    const { handleSubmit } = this;
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            hintText="List name"
-            onChange={(e) => setListItemName(e.target.value)}
-            name="name"
-            floatingLabelText="Add new list"
-            required
-          />
-          <FloatingActionButton mini={true} type="submit">
-            <ContentAdd />
-          </FloatingActionButton>
-        </form>
-        <pre>{JSON.stringify(lists)}</pre>
-      </div>
-    );
-  }
+    render() {
+        const { lists, setListItemName, name, addListItem } = this.props;
+        return (
+            <div>
+                <ListHeader {...{ setListItemName, name, addListItem}} />
+                <article style={styles.root}>
+                    {lists.map(todoList => (
+                        <ListItem key={todoList.id} todoList={todoList} />
+                    ))}
+                </article>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = ({ mainLists: { lists, name } }) => ({
-  lists,
-  name
+    lists,
+    name,
 });
 
 const mapDispatchToProps = {
-  getLists: actionCreators.getLists.create,
-  addListItem: actionCreators.addListItem.create,
-  setListItemName: actionCreators.setListItemName.create
+    getLists: actionCreators.getLists.create,
+    addListItem: actionCreators.addListItem.create,
+    setListItemName: actionCreators.setListItemName.create,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainListContainer);
