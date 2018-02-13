@@ -1,22 +1,22 @@
-import actionCreators from "./actionCreators";
+import actionCreators from './actionCreators'
 const initialState = {
   listName: '',
-  lists: []
-};
+  lists: [],
+}
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case actionCreators.updateLists.type:
       return {
         ...state,
-        lists: payload
-      };
+        lists: payload,
+      }
     case actionCreators.setListItemName.type:
       return {
         ...state,
-        name: payload
-      };
+        name: payload,
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}

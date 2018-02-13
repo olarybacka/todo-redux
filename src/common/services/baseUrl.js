@@ -1,1 +1,1 @@
-export default endpoint => `http://todos.venturedevs.net/api/${endpoint}`;
+export default endpoint => `http://todos.venturedevs.net/api/${endpoint}`
