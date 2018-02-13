@@ -32,17 +32,8 @@ const deleteListItem = action$ =>
       .mergeMap(res => Observable.of(actionCreators.getLists.create()))
   )
 
-const getTodos = action$ =>
-  action$.ofType(actionCreators.getTodos.type).mergeMap(() =>
-    ajax
-      .get(baseUrl('todos/'))
-      .map(res => res.response)
-      .mergeMap(res => Observable.of(actionCreators.updateTodos.create(res)))
-  )
-
 export const epics = combineEpics(
   getListEpic,
   addListEpic,
   deleteListItem,
-  getTodos
 )

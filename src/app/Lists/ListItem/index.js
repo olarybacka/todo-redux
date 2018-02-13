@@ -5,8 +5,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import { connect } from 'react-redux'
 import actionCreators from '../../../store/Lists/actionCreators'
 import ContentClear from 'material-ui/svg-icons/content/clear'
-import Todos from '../Todos'
+import Todo from './Todo'
 import ListName from './ListName'
+import NewTodo from './NewTodo'
 
 const styles = {
   listItem: {
@@ -39,7 +40,8 @@ class ListItem extends Component {
               <ContentClear />
             </FloatingActionButton>
           </Subheader>
-          {todos.map(todo => <Todos key={todo.id} {...{todo}}/>)}
+          <NewTodo listId={todoList.id}/>
+          {todos.map(todo => <Todo key={todo.id} {...{todo}}/>)}
         </List>
       </div>
     )

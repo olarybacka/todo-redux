@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actionCreators from '../../store/Lists/actionCreators'
-import ListHeader from './ListHeader'
+import ListsHeader from './ListHeader'
 import ListItem from './ListItem'
 
 const styles = {
@@ -23,14 +23,14 @@ class MainListContainer extends Component {
     const { lists, setListItemName, name, addListItem, todos } = this.props
     return (
       <div>
-        <ListHeader {...{ setListItemName, name, addListItem }} />
+        <ListsHeader {...{ setListItemName, name, addListItem }} />
         <article style={styles.root}>
           {lists.map(todoList => {
             return (
               <ListItem
                 key={todoList.id}
                 todoList={todoList}
-                todos = {todos.filter(todo => todo.todo_list === todoList.id)}
+                todos={todos.filter(todo => todo.todo_list === todoList.id)}
               />
             )
           })}

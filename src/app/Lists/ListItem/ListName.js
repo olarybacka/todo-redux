@@ -1,7 +1,7 @@
 import React from 'react'
 
 const handleInputChange = (e) => {
-  const newName = e.target.value
+  // const newName = e.target.value
 }
 
 export default ({ todoList }) => {
