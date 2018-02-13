@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable'
 import baseUrl from '../../common/services/baseUrl'
 
 const getListEpic = action$ =>
-  action$.ofType(actionCreators.getLists.type).mergeMap(action =>
+  action$.ofType(actionCreators.getLists.type).mergeMap(() =>
     ajax
       .get(baseUrl('todolists/'))
       .map(res => res.response)
@@ -32,4 +32,25 @@ const deleteListItem = action$ =>
       .mergeMap(res => Observable.of(actionCreators.getLists.create()))
   )
 
-export const epics = combineEpics(getListEpic, addListEpic, deleteListItem)
+const getTodos = action$ =>
+  action$.ofType(actionCreators.getTodos.type).mergeMap(() =>
+    ajax
+      .get(baseUrl('todos/'))
+      .map(res => res.response)
+      .mergeMap(res => Observable.of(actionCreators.updateTodos.create(res)))
+  )
+
+const getTodosOfList = action$ =>
+  action$.ofType(actionCreators.getTodosOfList.type).mergeMap(action =>
+    ajax
+      .get(baseUrl(`todolists/${action.payload}/`))
+      .map(res => res.response)
+      .mergeMap(res => Observable.of(actionCreators.updateTodosOfList.create(res)))
+  )
+export const epics = combineEpics(
+  getListEpic,
+  addListEpic,
+  deleteListItem,
+  getTodos,
+  getTodosOfList,
+)

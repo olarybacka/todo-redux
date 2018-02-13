@@ -2,6 +2,8 @@ import actionCreators from './actionCreators'
 const initialState = {
   listName: '',
   lists: [],
+  todos: [],
+  todoLists: [],
 }
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -14,6 +16,16 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         name: payload,
+      }
+    case actionCreators.updateTodos.type:
+      return {
+        ...state,
+        todos: payload,
+      }
+    case actionCreators.updateTodosOfList.type:
+      return {
+        ...state,
+        todoLists: payload,
       }
 
     default:
