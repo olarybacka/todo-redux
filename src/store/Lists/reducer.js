@@ -22,12 +22,6 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         todos: payload,
       }
-    case actionCreators.updateTodosOfList.type:
-      return {
-        ...state,
-        todoLists: payload,
-      }
-
     default:
       return state
   }

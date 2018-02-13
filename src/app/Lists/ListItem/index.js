@@ -23,18 +23,14 @@ const styles = {
 }
 
 class ListItem extends Component {
-  componentDidMount() {
-
-  }
 
   render() {
-    const { todoList, deleteListItem } = this.props
+    const { todoList, deleteListItem, todos } = this.props
     return (
       <div style={styles.listItem}>
         <List>
           <Subheader style={styles.subheader}>
             <ListName todoList={todoList}/>
-         
             <FloatingActionButton
               secondary={true}
               mini={true}
@@ -43,17 +39,15 @@ class ListItem extends Component {
               <ContentClear />
             </FloatingActionButton>
           </Subheader>
-          <Todos listId={todoList.id}/>
+          {todos.map(todo => <Todos key={todo.id} {...{todo}}/>)}
         </List>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ mainLists: { lists, name, todos } }) => ({
-  lists,
-  name,
-  todos
+const mapStateToProps = ({ mainLists: { name } }) => ({
+  name
 })
 
 const mapDispatchToProps = {

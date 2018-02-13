@@ -40,17 +40,9 @@ const getTodos = action$ =>
       .mergeMap(res => Observable.of(actionCreators.updateTodos.create(res)))
   )
 
-const getTodosOfList = action$ =>
-  action$.ofType(actionCreators.getTodosOfList.type).mergeMap(action =>
-    ajax
-      .get(baseUrl(`todolists/${action.payload}/`))
-      .map(res => res.response)
-      .mergeMap(res => Observable.of(actionCreators.updateTodosOfList.create(res)))
-  )
 export const epics = combineEpics(
   getListEpic,
   addListEpic,
   deleteListItem,
-  getTodos,
-  getTodosOfList,
+  getTodos
 )

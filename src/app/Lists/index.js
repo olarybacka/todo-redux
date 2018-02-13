@@ -14,32 +14,41 @@ const styles = {
 
 class MainListContainer extends Component {
   componentDidMount() {
-    const { getLists } = this.props
+    const { getLists, getTodos } = this.props
     getLists()
+    getTodos()
   }
 
   render() {
-    const { lists, setListItemName, name, addListItem } = this.props
+    const { lists, setListItemName, name, addListItem, todos } = this.props
     return (
       <div>
         <ListHeader {...{ setListItemName, name, addListItem }} />
         <article style={styles.root}>
-          {lists.map(todoList => (
-            <ListItem key={todoList.id} todoList={todoList} />
-          ))}
+          {lists.map(todoList => {
+            return (
+              <ListItem
+                key={todoList.id}
+                todoList={todoList}
+                todos = {todos.filter(todo => todo.todo_list === todoList.id)}
+              />
+            )
+          })}
         </article>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ mainLists: { lists, name } }) => ({
+const mapStateToProps = ({ mainLists: { lists, name, todos } }) => ({
   lists,
   name,
+  todos,
 })
 
 const mapDispatchToProps = {
   getLists: actionCreators.getLists.create,
+  getTodos: actionCreators.getTodos.create,
   addListItem: actionCreators.addListItem.create,
   setListItemName: actionCreators.setListItemName.create,
 }
