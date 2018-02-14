@@ -19,7 +19,7 @@ class Todo extends Component {
     },
   }
   render() {
-    const { todo } = this.props
+    const { todo, deleteTodoItem } = this.props
     return (
       <div>
         <Checkbox
@@ -32,7 +32,7 @@ class Todo extends Component {
         <FloatingActionButton
           secondary={true}
           mini={true}
-          onClick={() => console.log(todo.id)}
+          onClick={() => deleteTodoItem(todo.id)}
         >
           <ContentClear />
         </FloatingActionButton>
@@ -44,6 +44,7 @@ class Todo extends Component {
 const mapDispatchToProps = {
   postTodoItem: actionCreators.postTodoItem.create,
   putTodoItem: actionCreators.putTodoItem.create,
+  deleteTodoItem: actionCreators.deleteTodoItem.create,
 }
 
 export default connect(null, mapDispatchToProps)(Todo)
