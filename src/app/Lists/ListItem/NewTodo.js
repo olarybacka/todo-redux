@@ -19,10 +19,10 @@ class NewTodo extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <TextField
-            hintText="List name"
+            hintText="Todo name"
             onChange={e => this.setState({ newTodo: e.target.value })}
             name="name"
-            floatingLabelText="Add new list"
+            floatingLabelText="Add new todo"
             required
           />
           <FloatingActionButton mini={true} type="submit">

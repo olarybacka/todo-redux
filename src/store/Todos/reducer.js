@@ -7,7 +7,7 @@ export default (state = initialState, { type, payload }) => {
     case actionCreators.updateTodos.type:
       return {
         ...state,
-        todos: payload,
+        todos: [...payload].sort((a, b)=> a.id - b.id),
       }
     default:
       return state
