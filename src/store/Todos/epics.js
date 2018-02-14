@@ -25,7 +25,12 @@ const postTodoItem = action$ =>
       .mergeMap(() => Observable.of(actionCreators.getTodos.create()))
   )
 
-export const epics = combineEpics(
-  getTodos,
-  postTodoItem
-)
+const putTodoItem = action$ =>
+  action$.ofType(actionCreators.putTodoItem.type).mergeMap(action =>
+    ajax
+      .put(baseUrl(`todos/${action.payload.id}/`), action.payload.body)
+      .map(res => res.response)
+      .mergeMap(() => Observable.of(actionCreators.getTodos.create()))
+  )
+
+export const epics = combineEpics(getTodos, postTodoItem, putTodoItem)
