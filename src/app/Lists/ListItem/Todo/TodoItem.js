@@ -3,6 +3,13 @@ import Checkbox from 'material-ui/Checkbox'
 import TextField from 'material-ui/TextField'
 
 class TodoItem extends Component {
+  handleOnFocus(e) {
+    const { todo, setTodoItemName } = this.props
+    e.target.value = ''
+    e.target.value = todo.name
+    setTodoItemName(e.target.value)
+  }
+
   render() {
     const {
       todo,
@@ -10,7 +17,7 @@ class TodoItem extends Component {
       handleCheck,
       handleTodoNameEdit,
       edit,
-      hover
+      hover,
     } = this.props
 
     const styles = {
@@ -19,7 +26,7 @@ class TodoItem extends Component {
         padding: '12px',
         width: 'auto',
         display: edit ? 'none' : 'block',
-        fontWeight: hover ? '900' : '400'
+        fontWeight: hover ? '900' : '400',
       },
     }
 
@@ -32,16 +39,14 @@ class TodoItem extends Component {
           defaultChecked={todo.is_complete}
           onCheck={e => handleCheck(e)}
         />
-        <form
-          onSubmit={e => handleTodoNameEdit(e)}
-        >
+        <form onSubmit={e => handleTodoNameEdit(e)}>
           {edit && (
             <TextField
               name={todo.name}
               style={{ width: 'auto', paddingLeft: '26px' }}
               defaultValue={todo.name}
               autoFocus
-              onFocus={(e) => {e.target.value = ''; e.target.value = todo.name}}
+              onFocus={e => this.handleOnFocus(e)}
               onBlur={e => handleTodoNameEdit(e)}
               onChange={e => setTodoItemName(e.target.value)}
             />
