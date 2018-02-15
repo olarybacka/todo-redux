@@ -45,7 +45,7 @@ class ListItem extends Component {
     const { todoList, todos, setListItemName } = this.props
     return (
       <div style={styles.listItem}>
-        <List>
+        <List style={{padding: 0}}>
           <ListHeader
             {...{ todoList, setListItemName }}
             handleListNameEdit = {this.handleListNameEdit}

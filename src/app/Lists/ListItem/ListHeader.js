@@ -35,15 +35,15 @@ export default ({
         }}
       />
       <div>
-        <IconButton style={styles.button} onClick={() => handleEdit()}>
-          <EditorModeEdit color={'#fff'} hoverColor={'#00bcd5'} />
+        <IconButton style={styles.button} onClick={handleEdit}>
+          <EditorModeEdit color='#fff' hoverColor='#00bcd5' />
         </IconButton>
 
         <IconButton
           style={styles.button}
           onClick={() => handleDelete(todoList.id)}
         >
-          <ActionDelete color={'#fff'} hoverColor={'#ff4081'} />
+          <ActionDelete color='#fff' hoverColor='#ff4081' />
         </IconButton>
       </div>
     </Subheader>

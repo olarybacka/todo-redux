@@ -10,10 +10,10 @@ export default ({ deleteTodoItem, hover, todo, handleEdit }) => {
   return (
     <div>
       <IconButton style={styles.button} onClick={handleEdit}>
-        <EditorModeEdit hoverColor={'#00bcd5'} />
+        <EditorModeEdit hoverColor='#00bcd5' />
       </IconButton>
       <IconButton style={styles.button} onClick={() => deleteTodoItem(todo.id)}>
-        <ActionDelete hoverColor={'#ff4081'} />
+        <ActionDelete hoverColor='#ff4081' />
       </IconButton>
     </div>
   )

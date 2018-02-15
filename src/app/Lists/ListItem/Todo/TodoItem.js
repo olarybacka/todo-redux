@@ -36,18 +36,18 @@ class TodoItem extends Component {
           name={todo.name}
           label={todo.name}
           style={styles.todo}
-          defaultChecked={todo.is_complete}
-          onCheck={e => handleCheck(e)}
+          checked={todo.is_complete}
+          onCheck={handleCheck}
         />
-        <form onSubmit={e => handleTodoNameEdit(e)}>
+        <form onSubmit={handleTodoNameEdit}>
           {edit && (
             <TextField
               name={todo.name}
               style={{ width: 'auto', paddingLeft: '26px' }}
               defaultValue={todo.name}
               autoFocus
-              onFocus={e => this.handleOnFocus(e)}
-              onBlur={e => handleTodoNameEdit(e)}
+              onFocus={this.handleOnFocus}
+              onBlur={handleTodoNameEdit}
               onChange={e => setTodoItemName(e.target.value)}
             />
           )}

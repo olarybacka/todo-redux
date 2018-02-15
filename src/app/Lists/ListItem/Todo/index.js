@@ -70,7 +70,6 @@ const mapStateToProps = ({ Todo: { todoItemName } }) => ({
 })
 
 const mapDispatchToProps = {
-  postTodoItem: actionCreators.postTodoItem.create,
   putTodoItem: actionCreators.putTodoItem.create,
   deleteTodoItem: actionCreators.deleteTodoItem.create,
   setTodoItemName: actionCreators.setTodoItemName.create,
