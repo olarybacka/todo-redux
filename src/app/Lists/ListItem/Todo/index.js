@@ -51,7 +51,7 @@ class Todo extends Component {
         onMouseLeave={() => this.setState({ hover: false })}
       >
         <TodoItem
-          {...{ todo, setTodoItemName }}
+          {...{ todo, setTodoItemName, hover }}
           handleTodoNameEdit={this.handleTodoNameEdit}
           handleCheck={this.handleCheck}
           edit={this.state.edit}

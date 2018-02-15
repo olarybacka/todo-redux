@@ -10,14 +10,16 @@ class TodoItem extends Component {
       handleCheck,
       handleTodoNameEdit,
       edit,
+      hover
     } = this.props
 
     const styles = {
       todo: {
-        textDecoration: this.props.todo.is_complete ? 'line-through' : 'none',
+        textDecoration: todo.is_complete ? 'line-through' : 'none',
         padding: '12px',
         width: 'auto',
         display: edit ? 'none' : 'block',
+        fontWeight: hover ? '900' : '400'
       },
     }
 

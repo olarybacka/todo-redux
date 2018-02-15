@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actionCreatorsLists from '../../store/Lists/actionCreators'
 import actionCreatorsTodos from '../../store/Todos/actionCreators'
-import ListsHeader from './ListHeader'
+import ListsHeader from './ListsHeader'
 import ListItem from './ListItem'
 
 const styles = {
