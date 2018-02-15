@@ -11,15 +11,31 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     background: '#dedede',
-  }
+  },
 }
 
-export default ({todoList, handleDelete}) => {
+export default ({
+  todoList,
+  handleDelete,
+  handleEdit,
+  edit,
+  handleListNameEdit,
+  handleOnFocus,
+  setListItemName,
+}) => {
   return (
     <Subheader style={styles.subheader}>
-      <ListName todoList={todoList} />
+      <ListName
+        {...{
+          todoList,
+          edit,
+          handleListNameEdit,
+          setListItemName,
+          handleOnFocus,
+        }}
+      />
       <div>
-        <IconButton style={styles.button} onClick={() => {}}>
+        <IconButton style={styles.button} onClick={() => handleEdit()}>
           <EditorModeEdit color={'#fff'} hoverColor={'#00bcd5'} />
         </IconButton>
 

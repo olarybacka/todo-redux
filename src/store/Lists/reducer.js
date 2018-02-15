@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
     case actionCreators.setListItemName.type:
       return {
         ...state,
-        name: payload,
+        listName: payload,
       }
     default:
       return state
