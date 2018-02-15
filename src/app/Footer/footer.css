@@ -1,0 +1,29 @@
+.App-footer {
+  height: 150px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.App-footer-background1 {
+  background: rgba(0, 188, 213, 0.15);
+  position: absolute;
+  width: 100%;
+  height: 400px;
+  top: 111px;
+  left: -220px;
+  transform: skew(0deg, 10deg);
+}
+.App-footer-background2 {
+  background: rgba(0, 188, 213, 0.24);
+  position: absolute;
+  width: 100%;
+  height: 400px;
+  top: 100px;
+  transform: skew(0deg, -7deg);
+}
+.App-title {
+  z-index: 1;
+  position: relative;
+}
