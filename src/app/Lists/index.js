@@ -21,10 +21,10 @@ class MainListContainer extends Component {
   }
 
   render() {
-    const { lists, setListItemName, name, addListItem, todos } = this.props
+    const { lists, setListItemName, listName, addListItem, todos } = this.props
     return (
       <div>
-        <ListsHeader {...{ setListItemName, name, addListItem }} />
+        <ListsHeader {...{ setListItemName, listName, addListItem }} />
         <article style={styles.root}>
           {lists.map(todoList => {
             return (
@@ -41,9 +41,9 @@ class MainListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ List: { lists, name}, Todo: { todos } }) => ({
+const mapStateToProps = ({ List: { lists, listName}, Todo: { todos } }) => ({
   lists,
-  name,
+  listName,
   todos,
 })
 

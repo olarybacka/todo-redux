@@ -10,10 +10,10 @@ export default ({
 }) => {
   const { name } = todoList
   return edit ? (
-    <form onSubmit={(e) => handleListNameEdit(e)}>
+    <form onSubmit={e => handleListNameEdit(e)}>
       <TextField
         name={todoList.name}
-        style={{ width: 'auto', paddingLeft: '26px' }}
+        style={{ width: 'auto' }}
         defaultValue={todoList.name}
         autoFocus
         onFocus={e => handleOnFocus(e)}
@@ -22,6 +22,6 @@ export default ({
       />
     </form>
   ) : (
-    <div>{name}</div>
+    <TextField name={todoList.name} value={name} style={{ width: 'auto' }} />
   )
 }

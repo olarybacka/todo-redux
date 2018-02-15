@@ -8,7 +8,7 @@ export default (state = initialState, { type, payload }) => {
     case actionCreators.updateLists.type:
       return {
         ...state,
-        lists: payload,
+        lists: [...payload].sort((a, b) => a.id - b.id),
       }
     case actionCreators.setListItemName.type:
       return {

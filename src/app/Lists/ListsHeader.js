@@ -3,10 +3,10 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import TextField from 'material-ui/TextField'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 
-export default ({ setListItemName, name, addListItem }) => {
+export default ({ setListItemName, listName, addListItem }) => {
   const handleSubmit = e => {
     e.preventDefault()
-    addListItem({ name })
+    addListItem({ name: listName })
   }
 
   return (
