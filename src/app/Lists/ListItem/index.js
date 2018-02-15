@@ -7,7 +7,7 @@ import actionCreators from '../../../store/Lists/actionCreators'
 import ContentClear from 'material-ui/svg-icons/content/clear'
 import Todo from './Todo'
 import ListName from './ListName'
-import NewTodo from './NewTodo'
+import NewTodo from './Todo/NewTodo'
 
 const styles = {
   listItem: {

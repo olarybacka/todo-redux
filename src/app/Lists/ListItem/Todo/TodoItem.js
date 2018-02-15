@@ -1,0 +1,52 @@
+import React, { Component } from 'react'
+import Checkbox from 'material-ui/Checkbox'
+import TextField from 'material-ui/TextField'
+
+class TodoItem extends Component {
+  render() {
+    const {
+      todo,
+      setTodoItemName,
+      handleCheck,
+      handleTodoNameEdit,
+      edit,
+    } = this.props
+
+    const styles = {
+      todo: {
+        textDecoration: this.props.todo.is_complete ? 'line-through' : 'none',
+        padding: '12px',
+        width: 'auto',
+        display: edit ? 'none' : 'block',
+      },
+    }
+
+    return (
+      <div>
+        <Checkbox
+          name={todo.name}
+          label={todo.name}
+          style={styles.todo}
+          defaultChecked={todo.is_complete}
+          onCheck={e => handleCheck(e)}
+        />
+        <form
+          onSubmit={e => handleTodoNameEdit(e)}
+        >
+          {edit && (
+            <TextField
+              name={todo.name}
+              style={{ width: 'auto', paddingLeft: '26px' }}
+              defaultValue={todo.name}
+              autoFocus
+              onFocus={(e) => {e.target.value = ''; e.target.value = todo.name}}
+              onBlur={e => handleTodoNameEdit(e)}
+              onChange={e => setTodoItemName(e.target.value)}
+            />
+          )}
+        </form>
+      </div>
+    )
+  }
+}
+export default TodoItem
