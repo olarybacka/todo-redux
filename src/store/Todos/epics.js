@@ -9,6 +9,23 @@ import * as ajax from '../../common/services/utils'
 import { Observable } from 'rxjs/Observable'
 import baseUrl from '../../common/services/baseUrl'
 
+const loadingSet = action$ =>
+  action$
+    .ofType(
+      actionCreators.getTodos.type,
+      actionCreators.postTodoItem.type,
+      actionCreators.putTodoItem.type,
+      actionCreators.deleteTodoItem.type
+    )
+    .mergeMap(() => Observable.of(actionCreators.setLoading.create()))
+
+const loadingClear = action$ =>
+  action$
+    .ofType(
+      actionCreators.updateTodos.type,
+    )
+    .mergeMap(() => Observable.of(actionCreators.clearLoading.create()))
+
 const getTodos = action$ =>
   action$.ofType(actionCreators.getTodos.type).mergeMap(() =>
     ajax
@@ -41,4 +58,11 @@ const deleteTodoItem = action$ =>
       .mergeMap(() => Observable.of(actionCreators.getTodos.create()))
   )
 
-export const epics = combineEpics(getTodos, postTodoItem, putTodoItem, deleteTodoItem)
+export const epics = combineEpics(
+  getTodos,
+  postTodoItem,
+  putTodoItem,
+  deleteTodoItem,
+  loadingSet,
+  loadingClear
+)

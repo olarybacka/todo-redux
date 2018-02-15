@@ -10,3 +10,7 @@
 .App-intro {
   font-size: large;
 }
+
+.loading{
+  cursor: progress !important;
+}

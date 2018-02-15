@@ -8,4 +8,7 @@ export default {
 
   updateTodos: ActionCreator('UPDATE_TODOS'),
   setTodoItemName: ActionCreator('SET_TODO_ITEM_NAME'),
+
+  setLoading: ActionCreator('SET_LOADING'),
+  clearLoading: ActionCreator('UNSET_LOADING')
 }

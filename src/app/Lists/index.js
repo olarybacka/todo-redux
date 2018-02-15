@@ -5,13 +5,7 @@ import actionCreatorsTodos from '../../store/Todos/actionCreators'
 import ListsHeader from './ListsHeader'
 import ListItem from './ListItem'
 
-const styles = {
-  root: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-  },
-}
+
 
 class MainListContainer extends Component {
   componentDidMount() {
@@ -21,9 +15,20 @@ class MainListContainer extends Component {
   }
 
   render() {
-    const { lists, setListItemName, listName, addListItem, todos } = this.props
+    const { lists, setListItemName, listName, addListItem, todos, isLoading } = this.props
+    const styles = {
+      cursor: {
+        cursor:   'progress' 
+      },
+      root: {
+        display: 'flex',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+      },
+    }
     return (
-      <div>
+      <div className='loading'>
+        {isLoading ? <div> LOADING!!!!! </div> : null}
         <ListsHeader {...{ setListItemName, listName, addListItem }} />
         <article style={styles.root}>
           {lists.map(todoList => {
@@ -41,10 +46,11 @@ class MainListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ List: { lists, listName}, Todo: { todos } }) => ({
+const mapStateToProps = ({ List: { lists, listName}, Todo: { todos, isLoading} }) => ({
   lists,
   listName,
   todos,
+  isLoading
 })
 
 const mapDispatchToProps = {
