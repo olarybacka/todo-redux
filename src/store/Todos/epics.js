@@ -1,30 +1,11 @@
 import { combineEpics } from 'redux-observable'
 import actionCreators from './actionCreators'
 import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/catch'
 import 'rxjs/add/observable/of'
 import 'rxjs/add/operator/mergeMap'
 import * as ajax from '../../common/services/utils'
 import { Observable } from 'rxjs/Observable'
 import baseUrl from '../../common/services/baseUrl'
-
-const loadingSet = action$ =>
-  action$
-    .ofType(
-      actionCreators.getTodos.type,
-      actionCreators.postTodoItem.type,
-      actionCreators.putTodoItem.type,
-      actionCreators.deleteTodoItem.type
-    )
-    .mergeMap(() => Observable.of(actionCreators.setLoading.create()))
-
-const loadingClear = action$ =>
-  action$
-    .ofType(
-      actionCreators.updateTodos.type,
-    )
-    .mergeMap(() => Observable.of(actionCreators.clearLoading.create()))
 
 const getTodos = action$ =>
   action$.ofType(actionCreators.getTodos.type).mergeMap(() =>
@@ -62,7 +43,5 @@ export const epics = combineEpics(
   getTodos,
   postTodoItem,
   putTodoItem,
-  deleteTodoItem,
-  loadingSet,
-  loadingClear
+  deleteTodoItem
 )

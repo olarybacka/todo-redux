@@ -17,7 +17,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ Todo: { isLoading } }) => ({
+const mapStateToProps = ({ Loading: { isLoading } }) => ({
   isLoading,
 })
 
