@@ -11,6 +11,8 @@ const styles = {
     width: '300px',
     minHeight: '250px',
     border: '1px solid #ddd',
+    background: '#fff',
+    margin: '10px',
   },
 }
 
@@ -42,35 +44,38 @@ class ListItem extends Component {
     this.setState({ edit: false })
   }
   render() {
-    const { todoList, todos, setListItemName } = this.props
+    const { todoList, todos, setListItemName, searchedTodo } = this.props
     return (
       <div style={styles.listItem}>
-        <List style={{padding: 0}}>
+        <List style={{ padding: 0 }}>
           <ListHeader
             {...{ todoList, setListItemName }}
-            handleListNameEdit = {this.handleListNameEdit}
+            handleListNameEdit={this.handleListNameEdit}
             handleDelete={this.handleDelete}
             handleEdit={this.handleEdit}
             edit={this.state.edit}
             handleOnFocus={this.handleOnFocus}
           />
           <NewTodo listId={todoList.id} />
-          {todos.map(todo => <Todo key={todo.id} {...{ todo }} />)}
+          {todos
+            .filter(todo => todo.name.toUpperCase().includes(searchedTodo.toUpperCase()))
+            .map(todo => <Todo key={todo.id} {...{ todo }} />)}
         </List>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ List: { listName } }) => ({
+const mapStateToProps = ({ List: { listName }, Todo: {searchedTodo} }) => ({
   listName,
+  searchedTodo
 })
 
 const mapDispatchToProps = {
   addListItem: actionCreators.addListItem.create,
   setListItemName: actionCreators.setListItemName.create,
   deleteListItem: actionCreators.deleteListItem.create,
-  putListItemName: actionCreators.putListItemName.create
+  putListItemName: actionCreators.putListItemName.create,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem)

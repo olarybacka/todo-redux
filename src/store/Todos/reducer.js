@@ -2,6 +2,7 @@ import actionCreators from './actionCreators'
 const initialState = {
   todoItemName: '',
   todos: [],
+  searchedTodo: ''
 }
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -14,6 +15,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         todoItemName: payload,
+      }
+    case actionCreators.setSearchedTodo.type:
+      return {
+        ...state,
+        searchedTodo: payload,
       }
     default:
       return state

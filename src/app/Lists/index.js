@@ -5,8 +5,6 @@ import actionCreatorsTodos from '../../store/Todos/actionCreators'
 import ListsHeader from './ListsHeader'
 import ListItem from './ListItem'
 
-
-
 class MainListContainer extends Component {
   componentDidMount() {
     const { getLists, getTodos } = this.props
@@ -15,17 +13,21 @@ class MainListContainer extends Component {
   }
 
   render() {
-    const { lists, setListItemName, listName, addListItem, todos } = this.props
+    const { lists, setListItemName, listName, addListItem, todos, setSearchedTodo } = this.props
     const styles = {
       root: {
         display: 'flex',
         justifyContent: 'space-around',
         flexWrap: 'wrap',
+        position: 'relative',
+        zIndex: '2',
       },
     }
     return (
       <div>
-        <ListsHeader {...{ setListItemName, listName, addListItem }} />
+        <ListsHeader
+          {...{ setListItemName, listName, addListItem, setSearchedTodo }}
+        />
         <article style={styles.root}>
           {lists.map(todoList => {
             return (
@@ -42,7 +44,7 @@ class MainListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ List: { lists, listName}, Todo: { todos} }) => ({
+const mapStateToProps = ({ List: { lists, listName }, Todo: { todos } }) => ({
   lists,
   listName,
   todos,
@@ -53,6 +55,7 @@ const mapDispatchToProps = {
   getTodos: actionCreatorsTodos.getTodos.create,
   addListItem: actionCreatorsLists.addListItem.create,
   setListItemName: actionCreatorsLists.setListItemName.create,
+  setSearchedTodo: actionCreatorsTodos.setSearchedTodo.create,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainListContainer)

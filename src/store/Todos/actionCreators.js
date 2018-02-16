@@ -8,4 +8,5 @@ export default {
 
   updateTodos: ActionCreator('UPDATE_TODOS'),
   setTodoItemName: ActionCreator('SET_TODO_ITEM_NAME'),
+  setSearchedTodo: ActionCreator('SET_SEARCHED_TODO'),
 }
