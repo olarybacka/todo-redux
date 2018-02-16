@@ -15,11 +15,8 @@ class MainListContainer extends Component {
   }
 
   render() {
-    const { lists, setListItemName, listName, addListItem, todos, isLoading } = this.props
+    const { lists, setListItemName, listName, addListItem, todos } = this.props
     const styles = {
-      cursor: {
-        cursor:   'progress' 
-      },
       root: {
         display: 'flex',
         justifyContent: 'space-around',
@@ -27,8 +24,7 @@ class MainListContainer extends Component {
       },
     }
     return (
-      <div className='loading'>
-        {isLoading ? <div> LOADING!!!!! </div> : null}
+      <div>
         <ListsHeader {...{ setListItemName, listName, addListItem }} />
         <article style={styles.root}>
           {lists.map(todoList => {
@@ -46,11 +42,10 @@ class MainListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ List: { lists, listName}, Todo: { todos, isLoading} }) => ({
+const mapStateToProps = ({ List: { lists, listName}, Todo: { todos} }) => ({
   lists,
   listName,
   todos,
-  isLoading
 })
 
 const mapDispatchToProps = {

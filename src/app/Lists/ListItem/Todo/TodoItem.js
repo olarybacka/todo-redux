@@ -3,7 +3,7 @@ import Checkbox from 'material-ui/Checkbox'
 import TextField from 'material-ui/TextField'
 
 class TodoItem extends Component {
-  handleOnFocus(e) {
+  handleOnFocus = e => {
     const { todo, setTodoItemName } = this.props
     e.target.value = ''
     e.target.value = todo.name

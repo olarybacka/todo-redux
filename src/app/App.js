@@ -3,12 +3,13 @@ import './App.css'
 import Header from './Header'
 import MainListsContainer from './Lists'
 import Footer from './Footer'
+import { connect } from 'react-redux'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header isLoading={this.props.isLoading}/>
         <MainListsContainer />
         <Footer />
       </div>
@@ -16,4 +17,8 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = ({ Todo: { isLoading } }) => ({
+  isLoading,
+})
+
+export default connect(mapStateToProps, null)(App)
