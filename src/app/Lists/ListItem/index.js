@@ -7,22 +7,13 @@ import NewTodo from './Todo/NewTodo'
 import ListHeader from './ListHeader'
 import TodoFilter from './TodoFilter'
 
-const styles = {
-  listItem: {
-    width: '300px',
-    minHeight: '250px',
-    border: '1px solid #ddd',
-    background: '#fff',
-    margin: '10px',
-  },
-}
-
 class ListItem extends Component {
   state = {
     edit: false,
     complete: true,
     notComplete: true,
   }
+  filteredTodos = this.props.todos
 
   handleDelete = todoListId => {
     this.props.deleteListItem(todoListId)
@@ -52,8 +43,26 @@ class ListItem extends Component {
       [type]: value,
     })
   }
+
+  componentWillReceiveProps(props) {
+    const { todos, searchedTodo } = props
+    this.filteredTodos = todos.filter(todo =>
+      todo.name.toUpperCase().includes(searchedTodo.toUpperCase())
+    )
+  }
   render() {
-    const { todoList, todos, setListItemName, searchedTodo } = this.props
+    const { todoList, setListItemName } = this.props
+    const styles = {
+      listItem: {
+        width: '300px',
+        minHeight: '250px',
+        border: '1px solid #ddd',
+        background: '#fff',
+        margin: '10px',
+        opacity: this.filteredTodos.length > 0 ? '1' : '0.3',
+      },
+    }
+
     return (
       <div style={styles.listItem}>
         <List style={{ padding: 0 }}>
@@ -71,10 +80,14 @@ class ListItem extends Component {
             notComplete={this.state.notComplete}
           />
           <NewTodo listId={todoList.id} />
-          {todos
-            .filter(todo => todo.name.toUpperCase().includes(searchedTodo.toUpperCase()))
-            .filter(todo => this.state.complete ? todo : todo.is_complete === false)
-            .filter(todo => this.state.notComplete ? todo : todo.is_complete === true)
+          {this.filteredTodos
+            .filter(
+              todo => (this.state.complete ? todo : todo.is_complete === false)
+            )
+            .filter(
+              todo =>
+                this.state.notComplete ? todo : todo.is_complete === true
+            )
             .map(todo => <Todo key={todo.id} {...{ todo }} />)}
         </List>
       </div>
