@@ -8,4 +8,5 @@ export default {
   setListItemName: ActionCreator('SET_LIST_ITEM_NAME'),
   putListItemName: ActionCreator('CHANGE_LIST_ITEM'),
   deleteListItem: ActionCreator('DELETE_LIST_ITEM'),
+  setSearchedList: ActionCreator('SET_SEARCHED_LIST'),
 }

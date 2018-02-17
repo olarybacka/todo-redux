@@ -2,6 +2,7 @@ import actionCreators from './actionCreators'
 const initialState = {
   listName: '',
   lists: [],
+  searchedList: ''
 }
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -14,6 +15,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         listName: payload,
+      }
+    case actionCreators.setSearchedList.type:
+      return {
+        ...state,
+        searchedList: payload,
       }
     default:
       return state

@@ -13,7 +13,16 @@ class MainListContainer extends Component {
   }
 
   render() {
-    const { lists, setListItemName, listName, addListItem, todos, setSearchedTodo } = this.props
+    const {
+      lists,
+      setListItemName,
+      listName,
+      addListItem,
+      todos,
+      setSearchedTodo,
+      setSearchedList,
+      searchedList,
+    } = this.props
     const styles = {
       root: {
         display: 'flex',
@@ -26,28 +35,42 @@ class MainListContainer extends Component {
     return (
       <div>
         <ListsHeader
-          {...{ setListItemName, listName, addListItem, setSearchedTodo }}
+          {...{
+            setListItemName,
+            listName,
+            addListItem,
+            setSearchedTodo,
+            setSearchedList,
+          }}
         />
         <article style={styles.root}>
-          {lists.map(todoList => {
-            return (
-              <ListItem
-                key={todoList.id}
-                todoList={todoList}
-                todos={todos.filter(todo => todo.todo_list === todoList.id)}
-              />
+          {lists
+            .filter(list =>
+              list.name.toUpperCase().includes(searchedList.toUpperCase())
             )
-          })}
+            .map(todoList => {
+              return (
+                <ListItem
+                  key={todoList.id}
+                  todoList={todoList}
+                  todos={todos.filter(todo => todo.todo_list === todoList.id)}
+                />
+              )
+            })}
         </article>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ List: { lists, listName }, Todo: { todos } }) => ({
+const mapStateToProps = ({
+  List: { lists, listName, searchedList },
+  Todo: { todos },
+}) => ({
   lists,
   listName,
   todos,
+  searchedList,
 })
 
 const mapDispatchToProps = {
@@ -56,6 +79,7 @@ const mapDispatchToProps = {
   addListItem: actionCreatorsLists.addListItem.create,
   setListItemName: actionCreatorsLists.setListItemName.create,
   setSearchedTodo: actionCreatorsTodos.setSearchedTodo.create,
+  setSearchedList: actionCreatorsLists.setSearchedList.create,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainListContainer)

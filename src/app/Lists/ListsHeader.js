@@ -19,6 +19,7 @@ export default ({
   listName,
   addListItem,
   setSearchedTodo,
+  setSearchedList
 }) => {
   const handleSubmit = e => {
     e.preventDefault()
@@ -55,7 +56,7 @@ export default ({
       <form onSubmit={handleSubmit}>
         <TextField
           hintText="List name"
-          onChange={e => setSearchedTodo(e.target.value)}
+          onChange={e => setSearchedList(e.target.value)}
           style={{ width: '140px' }}
           name="name"
           floatingLabelText="Search list"

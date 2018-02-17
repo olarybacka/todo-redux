@@ -72,16 +72,9 @@ class ListItem extends Component {
           />
           <NewTodo listId={todoList.id} />
           {todos
-            .filter(todo =>
-              todo.name.toUpperCase().includes(searchedTodo.toUpperCase())
-            )
-            .filter(
-              todo => (this.state.complete ? todo : todo.is_complete === false)
-            )
-            .filter(
-              todo =>
-                this.state.notComplete ? todo : todo.is_complete === true
-            )
+            .filter(todo => todo.name.toUpperCase().includes(searchedTodo.toUpperCase()))
+            .filter(todo => this.state.complete ? todo : todo.is_complete === false)
+            .filter(todo => this.state.notComplete ? todo : todo.is_complete === true)
             .map(todo => <Todo key={todo.id} {...{ todo }} />)}
         </List>
       </div>
