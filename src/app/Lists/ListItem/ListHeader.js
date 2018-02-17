@@ -10,7 +10,7 @@ const styles = {
     lineHeight: 'auto',
     display: 'flex',
     justifyContent: 'space-between',
-    background: '#dedede',
+    background: '#c3c3c3',
   },
 }
 

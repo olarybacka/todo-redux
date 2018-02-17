@@ -5,6 +5,7 @@ import actionCreators from '../../../store/Lists/actionCreators'
 import Todo from './Todo'
 import NewTodo from './Todo/NewTodo'
 import ListHeader from './ListHeader'
+import TodoFilter from './TodoFilter'
 
 const styles = {
   listItem: {
@@ -19,6 +20,8 @@ const styles = {
 class ListItem extends Component {
   state = {
     edit: false,
+    complete: true,
+    notComplete: true,
   }
 
   handleDelete = todoListId => {
@@ -43,6 +46,12 @@ class ListItem extends Component {
     })
     this.setState({ edit: false })
   }
+
+  handleFilter = (type, value) => {
+    this.setState({
+      [type]: value,
+    })
+  }
   render() {
     const { todoList, todos, setListItemName, searchedTodo } = this.props
     return (
@@ -56,9 +65,23 @@ class ListItem extends Component {
             edit={this.state.edit}
             handleOnFocus={this.handleOnFocus}
           />
+          <TodoFilter
+            handleCheck={this.handleFilter}
+            complete={this.state.complete}
+            notComplete={this.state.notComplete}
+          />
           <NewTodo listId={todoList.id} />
           {todos
-            .filter(todo => todo.name.toUpperCase().includes(searchedTodo.toUpperCase()))
+            .filter(todo =>
+              todo.name.toUpperCase().includes(searchedTodo.toUpperCase())
+            )
+            .filter(
+              todo => (this.state.complete ? todo : todo.is_complete === false)
+            )
+            .filter(
+              todo =>
+                this.state.notComplete ? todo : todo.is_complete === true
+            )
             .map(todo => <Todo key={todo.id} {...{ todo }} />)}
         </List>
       </div>
@@ -66,9 +89,9 @@ class ListItem extends Component {
   }
 }
 
-const mapStateToProps = ({ List: { listName }, Todo: {searchedTodo} }) => ({
+const mapStateToProps = ({ List: { listName }, Todo: { searchedTodo } }) => ({
   listName,
-  searchedTodo
+  searchedTodo,
 })
 
 const mapDispatchToProps = {
