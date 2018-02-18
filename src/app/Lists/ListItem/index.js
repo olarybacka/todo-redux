@@ -12,9 +12,9 @@ class ListItem extends Component {
     edit: false,
     complete: true,
     notComplete: true,
+    opacity: 1,
   }
   filteredTodos = this.props.todos
-  opacity = 1
   handleDelete = todoListId => {
     this.props.deleteListItem(todoListId)
   }
@@ -49,8 +49,9 @@ class ListItem extends Component {
     this.filteredTodos = todos.filter(todo =>
       todo.name.toUpperCase().includes(searchedTodo.toUpperCase())
     )
-    this.opacity =
-      this.filteredTodos.length === 0 && searchedTodo ? '0.3' : '1'
+    this.setState({
+      opacity: this.filteredTodos.length === 0 && searchedTodo ? '0.3' : '1',
+    })
   }
   render() {
     const { todoList, setListItemName } = this.props
@@ -61,7 +62,7 @@ class ListItem extends Component {
         border: '1px solid #ddd',
         background: '#fff',
         margin: '10px',
-        opacity: this.opacity,
+        opacity: this.state.opacity,
       },
     }
 

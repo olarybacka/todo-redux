@@ -23,16 +23,10 @@ const styles = {
 
 export default ({
   setListItemName,
-  listName,
-  addListItem,
   setSearchedTodo,
   setSearchedList,
+  handleSubmit
 }) => {
-  const handleSubmit = e => {
-    e.preventDefault()
-    addListItem({ name: listName })
-  }
-
   return (
     <article style={styles.listsHeader}>
       <form style={{ whiteSpace: 'nowrap' }} onSubmit={handleSubmit}>

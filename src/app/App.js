@@ -21,4 +21,4 @@ const mapStateToProps = ({ Loading: { isLoading } }) => ({
   isLoading,
 })
 
-export default connect(mapStateToProps, null)(App)
+export default connect(mapStateToProps)(App)

@@ -5,13 +5,31 @@ import actionCreatorsTodos from '../../store/Todos/actionCreators'
 import ListsHeader from './ListsHeader'
 import ListItem from './ListItem'
 
+const styles = {
+  lists: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    position: 'relative',
+    zIndex: '2',
+  },
+  container: {
+    maxWidth: '1300px',
+    margin: '0 auto'
+  }
+}
+
 class MainListContainer extends Component {
   componentDidMount() {
-    const { getLists, getTodos } = this.props
+    const { getLists, getTodos} = this.props
     getLists()
     getTodos()
   }
-
+  handleSubmit = e => {
+    const {listName, addListItem } = this.props
+    e.preventDefault()
+    addListItem({ name: listName })
+  }
   render() {
     const {
       lists,
@@ -23,19 +41,7 @@ class MainListContainer extends Component {
       setSearchedList,
       searchedList,
     } = this.props
-    const styles = {
-      lists: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap',
-        position: 'relative',
-        zIndex: '2',
-      },
-      container: {
-        maxWidth: '1300px',
-        margin: '0 auto'
-      }
-    }
+
     return (
       <div style={styles.container}>
         <ListsHeader
@@ -46,6 +52,7 @@ class MainListContainer extends Component {
             setSearchedTodo,
             setSearchedList,
           }}
+          handleSubmit = {this.handleSubmit}
         />
         <article style={styles.lists}>
           {lists
