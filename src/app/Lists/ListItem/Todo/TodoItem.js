@@ -31,7 +31,7 @@ class TodoItem extends Component {
     }
 
     return (
-      <div>
+      <div style={{width: 'calc(100% - 100px)'}}>
         <Checkbox
           name={todo.name}
           label={todo.name}

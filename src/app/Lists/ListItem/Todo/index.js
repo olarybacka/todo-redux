@@ -8,6 +8,8 @@ const styles = {
   container: {
     display: 'flex',
     justifyContent: 'space-between',
+    textAlign: 'left',
+    paddingLeft: '10px'
   },
 }
 
@@ -58,6 +60,7 @@ class Todo extends Component {
         />
         <EditTodo
           {...{ deleteTodoItem, hover, todo }}
+          hover={true}
           handleEdit={this.handleEdit}
         />
       </div>

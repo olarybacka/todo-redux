@@ -1,12 +1,14 @@
 # Todo app #
 A React app that creates todo lists.   
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)    
+    
 
+Demo online: (https://supreme-soup.surge.sh)
 
 ### Development ###
-`npm install`    
-`npm start`   
+`yarn install`    
+`yarn start`   
 
 ### Build ###
-`npm build`
+`yarn build`
 

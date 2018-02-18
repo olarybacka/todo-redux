@@ -24,16 +24,20 @@ class MainListContainer extends Component {
       searchedList,
     } = this.props
     const styles = {
-      root: {
+      lists: {
         display: 'flex',
         justifyContent: 'space-around',
         flexWrap: 'wrap',
         position: 'relative',
         zIndex: '2',
       },
+      container: {
+        maxWidth: '1300px',
+        margin: '0 auto'
+      }
     }
     return (
-      <div>
+      <div style={styles.container}>
         <ListsHeader
           {...{
             setListItemName,
@@ -43,7 +47,7 @@ class MainListContainer extends Component {
             setSearchedList,
           }}
         />
-        <article style={styles.root}>
+        <article style={styles.lists}>
           {lists
             .filter(list =>
               list.name.toUpperCase().includes(searchedList.toUpperCase())

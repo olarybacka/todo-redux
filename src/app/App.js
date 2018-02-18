@@ -8,11 +8,11 @@ import { connect } from 'react-redux'
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <section className="App">
         <Header isLoading={this.props.isLoading}/>
         <MainListsContainer />
         <Footer />
-      </div>
+      </section>
     )
   }
 }
